@@ -1,62 +1,39 @@
-var fs = require('fs');
 
-require("node-jquery-xhr");
-var forge = require("node-forge");
-var FormData = require('form-data');
 var antlr4 = require('antlr4/index');
-var pemJwk = require('pem-jwk');
 
-var window = null;
-var document = {};
-var view = {};
-var localStorage = {};
+exports.EcRemote = require("./dist/node.ec.base.js").EcRemote
 
-function load(lib){
-	if (fs.existsSync(lib))
-	{
-		return fs.readFileSync(lib);
-	}
-	else if (fs.existsSync(module.filename.replace("index.js","")+lib))
-	{
-		return fs.readFileSync(module.filename.replace("index.js","")+lib);
-	}
-	else if (fs.existsSync("./node_modules/cassproject/"+lib))
-	{
-		return fs.readFileSync("./node_modules/cassproject/"+lib);
-	}
-	else if (fs.existsSync("/usr/lib/node_modules/"+lib))
-	{
-		return fs.readFileSync("/usr/lib/node_modules/"+lib);
-	}
-}
+exports.EcRepository = require("./dist/node.ebac.repository.js").EcRepository;
 
-eval(load.call(this,"lib/random.js")+"");
-eval(load.call(this,"lib/blobHelper.js")+"");
-eval(load.call(this,"lib/base64toArrayBuffer.js")+"");
-eval(load.call(this,"lib/stjs.js")+"");
-eval(load.call(this,"lib/ec.base.js")+"");
-eval(load.call(this,"lib/ec.crypto.js")+"");
-eval(load.call(this,"lib/org.json-ld.js")+"");
-eval(load.call(this,"lib/org.cassproject.schema.general.js")+"");
-eval(load.call(this,"lib/org.schema.js")+"");
-eval(load.call(this,"lib/org.cassproject.schema.ebac.js")+"");
-eval(load.call(this,"lib/org.cassproject.schema.cass.js")+"");
-eval(load.call(this,"lib/ebac.identity.js")+"");
-eval(load.call(this,"lib/ebac.repository.js")+"");
-eval(load.call(this,"lib/cass.competency.js")+"");
-eval(load.call(this,"lib/RollupListener.js")+"");
-eval(load.call(this,"lib/RollupLexer.js")+"");
-eval(load.call(this,"lib/RollupParser.js")+"");
-eval(load.call(this,"lib/cass.rollup.js")+"");
+var EbacIdentity = require("./dist/node.ebac.identity.js");
+exports.EcRemoteIdentityManager = EbacIdentity.EcRemoteIdentityManager;
+exports.EcIdentityManager = EbacIdentity.EcIdentityManager;
 
-global.EcRemote = EcRemote;
-global.EcRepository = EcRepository;
-global.EcRemoteIdentityManager = EcRemoteIdentityManager;
-global.EcIdentityManager = EcIdentityManager;
-global.EcFramework = EcFramework;
-global.EcCompetency = EcCompetency;
-global.EcAlignment = EcAlignment;
-global.EcLevel = EcLevel;
-global.EcPk = EcPk;
-global.EcPpk = EcPpk;
-global.EcAssertion = EcAssertion;
+var CASS = require("./dist/node.cass.competency.js");
+exports.EcFramework = CASS.EcFramework;
+exports.EcCompetency = CASS.EcCompetency;
+exports.EcAlignment = CASS.EcAlignment;
+exports.EcLevel = CASS.EcLevel
+exports.EcAssertion = CASS.EcAssertion;
+
+var EcCrypto = require("./dist/node.ec.crypto.js")
+exports.EcPk = EcCrypto.EcPk;
+exports.EcPpk = EcCrypto.EcPpk;
+
+
+// eval(load.call(this,"lib/RollupListener.js")+"");
+// eval(load.call(this,"lib/RollupLexer.js")+"");
+// eval(load.call(this,"lib/RollupParser.js")+"");
+// eval(load.call(this,"lib/cass.rollup.js")+"");
+
+// global.EcRemote = EcRemote;
+// global.EcRepository = EcRepository;
+// global.EcRemoteIdentityManager = EcRemoteIdentityManager;
+// global.EcIdentityManager = EcIdentityManager;
+// global.EcFramework = EcFramework;
+// global.EcCompetency = EcCompetency;
+// global.EcAlignment = EcAlignment;
+// global.EcLevel = EcLevel;
+// global.EcPk = EcPk;
+// global.EcPpk = EcPpk;
+// global.EcAssertion = EcAssertion;
