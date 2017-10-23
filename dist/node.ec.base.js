@@ -1,16 +1,16 @@
 var $ = require("jquery");
-var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-$.support.cors = true; // cross domain, Cross-origin resource sharing
-$.ajaxSettings.xhr = function() {
-  return new XMLHttpRequest();
-};
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+//$.support.cors = true; // cross domain, Cross-origin resource sharing
+// $.ajaxSettings.xhr = function() {
+//   return new XMLHttpRequest();
+// };
 
 var stjs = require("./node.stjs.js");
 
 var ecLoader = require("./node.loader.js");
 var load = ecLoader.load;
 
-eval(load.call(this, "../lib/ec.base.js")+"");
+eval(load.call(this, "../lib/ec.base.js") + "");
 
 exports.Triple = Triple;
 exports.EcObject = EcObject;

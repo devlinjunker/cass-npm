@@ -1,7 +1,6 @@
 var forge = require("node-forge");
-var FormData = require('form-data');
-var url = require("url");
-var URL = url.URL;
+var FormData = require("form-data");
+var URL = require("url").Url;
 
 var window = undefined;
 var document = undefined;
@@ -37,7 +36,7 @@ var stjs = require("./node.stjs.js");
 var ecLoader = require("./node.loader.js");
 var load = ecLoader.load;
 
-eval(load.call(this, "../lib/ebac.repository.js")+"");
+eval(load.call(this, "../lib/ebac.repository.js") + "");
 
 exports.EcEncryptedValue = EcEncryptedValue;
 exports.GeneralFile = GeneralFile;
