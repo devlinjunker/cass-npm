@@ -1,9 +1,4 @@
-var $ = require("jquery");
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-//$.support.cors = true; // cross domain, Cross-origin resource sharing
-// $.ajaxSettings.xhr = function() {
-//   return new XMLHttpRequest();
-// };
+var request = require("request");
 
 var stjs = require("./node.stjs.js");
 
